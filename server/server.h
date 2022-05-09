@@ -1,11 +1,15 @@
 #ifndef __SERVER__
 #define __SERVER__
 
+
+/*
+    DEFAULT_PORT is 17280
+*/
 class Server
 {
 public:
     // TODO
-    Server(int port);
+    Server(int port = DEFAULT_PORT);
     // TODO
     ~Server();
 
@@ -32,6 +36,7 @@ private:
     void recieve();
     
     int port; // the port the server listens on.
+    const static int DEFAULT_PORT;
 };
 
 #endif//__SERVER__
