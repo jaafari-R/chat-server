@@ -17,7 +17,7 @@ Client::Client(int port)
 
 Client::~Client() {}
 
-void connect()
+void Client::connect()
 {
     struct sockaddr_in server_addr;
     
@@ -36,16 +36,16 @@ void connect()
         return;
     }
     
-    if(connect(sockfd, (sockaddr *)server_addr, sizeof(server_addr)))
+    if(connect(sockfd, (sockaddr *) &server_addr, sizeof(server_addr)))
     {
         // connection failed
         return;
     }
 }
 
-void printError(ErrorClient err)
+void Client::printError(ErrorClient err)
 {
-    switch()
+    switch(err)
     {
         case NO_ERROR:
             break;
