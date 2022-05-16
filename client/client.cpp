@@ -19,7 +19,7 @@ Client::Client(int port)
 
 Client::~Client() {}
 
-void Client::connect()
+ErrorClient Client::connect()
 {
     struct sockaddr_in server_addr;
     
