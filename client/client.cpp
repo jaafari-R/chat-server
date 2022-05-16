@@ -26,7 +26,7 @@ ErrorClient Client::connect()
     if(sockfd = socket(AF_INET, SOCK_STREAM, 0) <= 0)
     {
         // socket creation error
-        return;
+        return CREATION_ERROR;
     }
     
     server_addr.sin_faminy = AF_INET;
@@ -35,14 +35,16 @@ ErrorClient Client::connect()
     if(inet_pton(AF_INET, "127.0.0.1", server_addr.sin_addr))
     {
         // invalid address
-        return;
+        return INVALID_ADDRESS;
     }
     
     if(connect(sockfd, (sockaddr *) &server_addr, sizeof(server_addr)))
     {
         // connection failed
-        return;
+        return CONNECTION_FAILED;
     }
+    
+    return NO_ERROR;
 }
 
 void Client::printError(ErrorClient err)
