@@ -1,3 +1,9 @@
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
 #include "client.h"
 
 Client::Client(int port)
@@ -8,6 +14,8 @@ Client::Client(int port)
     else
         this->port = port;
 }
+
+Client::~Client() {}
 
 void connect()
 {
@@ -35,4 +43,17 @@ void connect()
     }
 }
 
-Client::~Client() {}
+void printError(ErrorClient err)
+{
+    switch()
+    {
+        case NO_ERROR:
+            break;
+        case CREATION_ERROR:
+            break;
+        case INVALID_ADDRESS:
+            break;
+        case CONNECTION_FAILED:
+            break;
+    }
+}
