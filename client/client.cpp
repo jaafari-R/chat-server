@@ -32,7 +32,7 @@ ErrorClient Client::initConnection()
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);
     
-    if(inet_pton(AF_INET, "127.0.0.1", server_addr.sin_addr))
+    if(inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr))
     {
         // invalid address
         return INVALID_ADDRESS;
