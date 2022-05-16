@@ -17,7 +17,7 @@ public:
 
     /* Connect to the server
     */
-    ErrorClient connect();
+    ErrorClient initConnection();
 
     /*  Handle communication
     */

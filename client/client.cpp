@@ -19,7 +19,7 @@ Client::Client(int port)
 
 Client::~Client() {}
 
-ErrorClient Client::connect()
+ErrorClient Client::initConnection()
 {
     struct sockaddr_in server_addr;
     
@@ -29,7 +29,7 @@ ErrorClient Client::connect()
         return CREATION_ERROR;
     }
     
-    server_addr.sin_faminy = AF_INET;
+    server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);
     
     if(inet_pton(AF_INET, "127.0.0.1", server_addr.sin_addr))
