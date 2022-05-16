@@ -1,8 +1,6 @@
 #ifndef __CLIENT__
 #define __CLIENT__
 
-const int Server::DEFAULT_PORT = 17280;
-
 enum ErrorClient
 {
     NO_ERROR,
