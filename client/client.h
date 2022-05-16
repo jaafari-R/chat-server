@@ -40,6 +40,7 @@ private:
     int sockfd; // socket file descri
     int port;
     bool connected; // true if connection is established
+    static const int DEFAULT_PORT;
 };
 
 #endif//__CLIENT__

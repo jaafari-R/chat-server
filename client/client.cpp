@@ -6,6 +6,8 @@
 
 #include "client.h"
 
+const int Client::DEFAULT_PORT = 17280;
+
 Client::Client(int port)
 {
     connected = false;

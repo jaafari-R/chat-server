@@ -1,8 +1,6 @@
 #ifndef __SERVER__
 #define __SERVER__
 
-const int Server::DEFAULT_PORT = 17280;
-
 /*
     
 */
