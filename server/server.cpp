@@ -7,16 +7,16 @@
 
 #include "server.h"
 
-const int Server::DEFAULT_PORT = 17280;
-
+const int Server::DEFAULT_PORT = 17284;
 
 Server::Server(int port)
 {
     if(port < 0 && port > 65535) 
-        port = DEFAULT_PORT;
+        this->port = this->DEFAULT_PORT;
     else
         this->port = port;
 }
+
 Server::~Server(){}
 
 
@@ -27,6 +27,7 @@ int Server::start()
     int reusable; //
     int reuse_val = 1; //
     struct sockaddr_in address; // 
+    int addrlen = sizeof(address);
 
     this->server_fd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -37,7 +38,7 @@ int Server::start()
     }
 
     // Set Server Socket to be reusable
-    reusable = setsockopt(this->server_fd, SOL_SOCKET,  SO_REUSEADDR, (char *)&reuse_val, sizeof(reuse_val));
+    reusable = setsockopt(this->server_fd, SOL_SOCKET,  SO_REUSEADDR | SO_REUSEPORT, &reuse_val, sizeof(reuse_val));
 
     if(reusable)
     {
@@ -58,14 +59,15 @@ int Server::start()
     }
 
     /* Listen for Connections */
-    if (listen(server_fd, 3) < 0)
+    if (listen(this->server_fd, 15) < 0)
     {
         this->error(); // TODO add eror
         return -1; // TODO return error code 
     }
 
     /* Accept Connection */
-    if ((connection_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&address)) < 0)
+    connection_socket = accept(this->server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen);
+    if (connection_socket < 0)
     {
         this->error(); // TODO add eror
         return -1; // TODO return error code 
@@ -84,8 +86,7 @@ void Server::beginSession(int connection_socket)
 {
     int valread;
     char buffer[1024] = {0};
-    char* response = "This is a response!";
-
+    const char* response = "This is a response!";
 
     valread = read(connection_socket, buffer, 1024);
     printf("%s\n", buffer);
@@ -95,3 +96,5 @@ void Server::beginSession(int connection_socket)
     // closing the connected socket
     close(connection_socket);
 }
+
+void Server::error(){}

@@ -12,6 +12,7 @@ enum ErrorClient
 class Client
 {
 public:
+    Client();
     Client(int port);
     ~Client();
 
@@ -22,6 +23,11 @@ public:
     /*  Handle communication
     */
     void start();
+
+    //TODO
+    /*
+    */
+    void beginSession();
 
     /*  Send a message to the server
     */
@@ -35,7 +41,8 @@ public:
     */
     void printError(ErrorClient err);
 private:
-    int sockfd; // socket file descri
+    int fd; // client file descriptor
+    int c_socket; // client socket
     int port;
     bool connected; // true if connection is established
     static const int DEFAULT_PORT;
