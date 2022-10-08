@@ -65,7 +65,7 @@ int Server::start()
     }
 
     /* Accept Connection */
-    if ((connection_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0)
+    if ((connection_socket = accept(server_fd, (struct sockaddr*)&address, (socklen_t*)&address)) < 0)
     {
         this->error(); // TODO add eror
         return -1; // TODO return error code 
