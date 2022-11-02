@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.tcc": "cpp",
-        "fstream": "cpp",
-        "compare": "cpp",
-        "limits": "cpp",
-        "chrono": "cpp"
-    }
-}
